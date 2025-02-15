@@ -47,10 +47,7 @@
         }
         /* Estilos para el reproductor de audio */
         audio {
-            margin-top: 20px; /* Espacio superior */
-            width: 80%; /* Ancho del reproductor */
-            max-width: 300px; /* Ancho máximo */
-            z-index: 3; /* Asegurar que esté por encima de los corazones */
+            display: none; /* Ocultar el reproductor de audio */
         }
         /* Estilos para los corazones flotantes */
         .heart {
@@ -109,25 +106,30 @@
 
     <p>Con amor, Angel.</p>
 
-    <p>PD: Te debo el detallito, pero no lo pude tener para hoy :/</p>
+    <p>PD: Te debo el detallito, pero no lo pude tener para hoy...</p>
 
     <!-- Imagen centrada -->
     <img src="GatitoLove.jpeg" alt="Imagen romántica">
 
-    <!-- Reproductor de audio (visible) -->
-    <audio id="audio" controls autoplay loop>
+    <!-- Reproductor de audio (oculto) -->
+    <audio id="audio" loop>
         <source src="Eres Tu- Matisse.mp3" type="audio/mpeg">
         Tu navegador no soporta audio.
     </audio>
 
     <!-- Script para generar corazones flotantes y manejar la interacción -->
     <script>
-        // Reproducir la canción al hacer clic en la página
-        document.body.addEventListener("click", () => {
+        // Función para iniciar el audio
+        function playAudio() {
             const audio = document.getElementById("audio");
-            audio.play();
-            document.getElementById("message").style.display = "none"; // Ocultar el mensaje
-        });
+            if (audio.paused) {
+                audio.play();
+            }
+        }
+
+        // Detectar interacción con la página
+        document.body.addEventListener("click", playAudio);
+        document.body.addEventListener("touchstart", playAudio); // Para dispositivos móviles
 
         // Generar corazones flotantes
         function createHearts() {
