@@ -38,12 +38,13 @@
             position: relative; /* Asegurar que esté por encima de los corazones */
             z-index: 3; /* Valor alto para estar por encima */
         }
-        /* Estilos para el reproductor de audio */
+        /* Estilos para ocultar el reproductor de audio */
         audio {
-            margin-top: 20px; /* Espacio superior */
-            width: 80%; /* Ancho del reproductor */
-            max-width: 300px; /* Ancho máximo */
-            z-index: 3; /* Asegurar que esté por encima de los corazones */
+            position: absolute;
+            opacity: 0; /* Hacerlo invisible */
+            z-index: -1; /* Enviarlo al fondo */
+            width: 1px; /* Hacerlo muy pequeño */
+            height: 1px;
         }
         /* Estilos para los corazones flotantes */
         .heart {
@@ -92,6 +93,7 @@
             margin-top: 20px;
             position: relative;
             z-index: 3;
+            transition: opacity 1s ease;
         }
     </style>
 </head>
@@ -103,23 +105,23 @@
     <!-- Imagen centrada -->
     <img src="GatitoLove.jpeg" alt="Imagen romántica">
 
-    <!-- Reproductor de audio (visible) -->
-    <audio id="audio" controls loop>
+    <!-- Reproductor de audio (oculto y reproducción automática) -->
+    <audio id="audio" autoplay loop>
         <source src="Eres Tu- Matisse.mp3" type="audio/mpeg">
         Tu navegador no soporta audio.
     </audio>
 
     <!-- Mensaje de interacción -->
-    <div id="message">Haz clic en la página para reproducir la música.</div>
+    <div id="message">La música comenzará automáticamente...</div>
 
     <!-- Script para generar corazones flotantes y manejar la interacción -->
     <script>
-        // Reproducir la canción al hacer clic en la página
-        document.body.addEventListener("click", () => {
+        // Reproducir la canción automáticamente al cargar la página
+        window.onload = () => {
             const audio = document.getElementById("audio");
             audio.play();
-            document.getElementById("message").style.display = "none"; // Ocultar el mensaje
-        });
+            document.getElementById("message").style.opacity = "0"; // Ocultar el mensaje suavemente
+        };
 
         // Generar corazones flotantes
         function createHearts() {
