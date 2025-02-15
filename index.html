@@ -12,12 +12,13 @@
             background-color: rgb(63, 3, 7); /* Fondo rojito */
             text-align: center;
             padding: 20px;
-            overflow-y: scroll; /* Permitir desplazamiento */
+            overflow-x: hidden; /* Evitar desplazamiento horizontal */
+            overflow-y: auto; /* Activar desplazamiento vertical */
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center; /* Centrar horizontalmente */
-            justify-content: center; /* Centrar verticalmente */
+            justify-content: flex-start; /* Alinear el contenido al inicio para permitir el desplazamiento */
             min-height: 100vh; /* Asegurar que ocupe toda la altura de la pantalla */
         }
         h1 {
@@ -46,7 +47,7 @@
         }
         /* Estilos para el reproductor de audio */
         audio {
-            display: none; /* Ocultar el reproductor de audio */
+            margin-top: 20px;
         }
         /* Estilos para los corazones flotantes */
         .heart {
@@ -105,36 +106,30 @@
 
     <p>Con amor, Angel.</p>
 
-    <p>PD: Te debo el detallito, pero no lo pude tener para hoy :/</p>
+    <p>PD: Te debo el detallito, pero no lo pude tener para hoy...</p>
 
     <!-- Imagen centrada -->
     <img src="GatitoLove.jpeg" alt="Imagen romántica">
 
-    <!-- Reproductor de audio (invisible) -->
-    <audio id="audio" autoplay loop>
+    <!-- Reproductor de audio con controles -->
+    <audio id="audio" controls loop>
         <source src="Eres Tu- Matisse.mp3" type="audio/mpeg">
         Tu navegador no soporta audio.
     </audio>
 
     <!-- Script para generar corazones flotantes y manejar la interacción -->
     <script>
-        // Reproducir la canción cuando el usuario haga scroll o toque/clic
-        let audioReproduced = false; // Verifica si el audio ya ha sido reproducido
-        const audio = document.getElementById("audio");
-
+        // Función para iniciar el audio si está pausado
         function playAudio() {
-            if (!audioReproduced) {
+            const audio = document.getElementById("audio");
+            if (audio.paused) {
                 audio.play();
-                audioReproduced = true; // Marcar que el audio ya fue reproducido
             }
         }
 
-        // Detectar desplazamiento (scroll) para reproducir la canción
-        window.addEventListener("scroll", playAudio);
-
-        // Detectar toque o clic para reproducir la canción
-        window.addEventListener("click", playAudio);
-        window.addEventListener("touchstart", playAudio); // Para móviles
+        // Detectar interacción con la página
+        document.body.addEventListener("click", playAudio);
+        document.body.addEventListener("touchstart", playAudio); // Para dispositivos móviles
 
         // Generar corazones flotantes
         function createHearts() {
