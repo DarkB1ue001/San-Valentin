@@ -38,13 +38,12 @@
             position: relative; /* Asegurar que esté por encima de los corazones */
             z-index: 3; /* Valor alto para estar por encima */
         }
-        /* Estilos para ocultar el reproductor de audio */
+        /* Estilos para el reproductor de audio */
         audio {
-            position: absolute;
-            opacity: 0; /* Hacerlo invisible */
-            z-index: -1; /* Enviarlo al fondo */
-            width: 1px; /* Hacerlo muy pequeño */
-            height: 1px;
+            margin-top: 20px; /* Espacio superior */
+            width: 80%; /* Ancho del reproductor */
+            max-width: 300px; /* Ancho máximo */
+            z-index: 3; /* Asegurar que esté por encima de los corazones */
         }
         /* Estilos para los corazones flotantes */
         .heart {
@@ -93,7 +92,6 @@
             margin-top: 20px;
             position: relative;
             z-index: 3;
-            transition: opacity 1s ease;
         }
     </style>
 </head>
@@ -105,23 +103,21 @@
     <!-- Imagen centrada -->
     <img src="GatitoLove.jpeg" alt="Imagen romántica">
 
-    <!-- Reproductor de audio (oculto y reproducción automática) -->
-    <audio id="audio" autoplay loop>
+    <!-- Reproductor de audio (visible) -->
+    <audio id="audio" controls autoplay loop>
         <source src="Eres Tu- Matisse.mp3" type="audio/mpeg">
         Tu navegador no soporta audio.
     </audio>
 
-    <!-- Mensaje de interacción -->
-    <div id="message">La música comenzará automáticamente...</div>
 
     <!-- Script para generar corazones flotantes y manejar la interacción -->
     <script>
-        // Reproducir la canción automáticamente al cargar la página
-        window.onload = () => {
+        // Reproducir la canción al hacer clic en la página
+        document.body.addEventListener("click", () => {
             const audio = document.getElementById("audio");
             audio.play();
-            document.getElementById("message").style.opacity = "0"; // Ocultar el mensaje suavemente
-        };
+            document.getElementById("message").style.display = "none"; // Ocultar el mensaje
+        });
 
         // Generar corazones flotantes
         function createHearts() {
