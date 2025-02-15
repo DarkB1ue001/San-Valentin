@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz San Valentín, Mi Amor ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: rgb(63, 3, 7); /* Fondo rojito */
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centrar horizontalmente */
+            justify-content: center; /* Centrar verticalmente */
+            min-height: 100vh; /* Asegurar que ocupe toda la altura de la pantalla */
+        }
+        h1 {
+            color: white; /* Color del texto en blanco */
+            margin-top: 20px;
+            position: relative; /* Asegurar que esté por encima de los corazones */
+            z-index: 3; /* Valor alto para estar por encima */
+        }
+        p {
+            color: white; /* Color del texto en blanco */
+            font-size: 1.2em;
+            position: relative; /* Asegurar que esté por encima de los corazones */
+            z-index: 3; /* Valor alto para estar por encima */
+        }
+        img {
+            width: 50%; /* Reducir el tamaño de la imagen al 50% */
+            border-radius: 10px;
+            margin-top: 20px; /* Espacio superior */
+            max-width: 400px; /* Limitar el ancho máximo de la imagen */
+            position: relative; /* Asegurar que esté por encima de los corazones */
+            z-index: 3; /* Valor alto para estar por encima */
+        }
+        /* Estilos para el reproductor de audio */
+        audio {
+            margin-top: 20px; /* Espacio superior */
+            width: 80%; /* Ancho del reproductor */
+            max-width: 300px; /* Ancho máximo */
+            z-index: 3; /* Asegurar que esté por encima de los corazones */
+        }
+        /* Estilos para los corazones flotantes */
+        .heart {
+            position: absolute;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: float 12s infinite ease-in-out; /* Animación más lenta */
+            z-index: 1; /* Valor bajo para estar detrás de todo */
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -50%; /* Ajuste proporcional */
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .heart::after {
+            top: 0;
+            left: 50%; /* Ajuste proporcional */
+            width: 100%;
+            height: 100%;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5) rotate(-45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.2) rotate(-45deg); /* Sube hasta la parte superior */
+                opacity: 0;
+            }
+        }
+        /* Estilos para el mensaje de interacción */
+        #message {
+            color: white;
+            font-size: 1.2em;
+            margin-top: 20px;
+            position: relative;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Texto -->
+    <h1>Feliz San Valentín, Mi Amor ❤️</h1>
+    <p>Eres lo mejor que me ha pasado. Gracias por llenar mi vida de amor y felicidad. 💖</p>
+
+    <!-- Imagen centrada -->
+    <img src="GatitoLove.jpeg" alt="Imagen romántica">
+
+    <!-- Reproductor de audio (visible) -->
+    <audio id="audio" controls loop>
+        <source src="Eres Tu- Matisse.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+
+    <!-- Mensaje de interacción -->
+    <div id="message">Haz clic en la página para reproducir la música.</div>
+
+    <!-- Script para generar corazones flotantes y manejar la interacción -->
+    <script>
+        // Reproducir la canción al hacer clic en la página
+        document.body.addEventListener("click", () => {
+            const audio = document.getElementById("audio");
+            audio.play();
+            document.getElementById("message").style.display = "none"; // Ocultar el mensaje
+        });
+
+        // Generar corazones flotantes
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+
+                // Tamaño aleatorio del corazón
+                const size = Math.random() * 30 + 15; /* Entre 15px y 45px */
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+
+                // Posición horizontal aleatoria
+                heart.style.left = Math.random() * 100 + "vw";
+
+                // Duración de la animación aleatoria (más lenta)
+                heart.style.animationDuration = (Math.random() * 8 + 8) + "s";
+
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 12000); /* Eliminar el corazón después de 12 segundos */
+            }
+        }
+        setInterval(createHearts, 1000); /* Crear corazones cada segundo */
+    </script>
+</body>
+</html>
