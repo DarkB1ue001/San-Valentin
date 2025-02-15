@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz San Valentín, Mi Amor ❤️</title>
+    <!-- Importar la fuente Dancing Script desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Dancing Script', cursive; /* Fuente romántica */
             background-color: rgb(63, 3, 7); /* Fondo rojito */
             text-align: center;
             padding: 20px;
-            overflow: hidden;
+            overflow-x: hidden; /* Evitar desplazamiento horizontal */
+            overflow-y: auto; /* Activar desplazamiento vertical */
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center; /* Centrar horizontalmente */
-            justify-content: center; /* Centrar verticalmente */
+            justify-content: flex-start; /* Alinear el contenido al inicio para permitir el desplazamiento */
             min-height: 100vh; /* Asegurar que ocupe toda la altura de la pantalla */
         }
         h1 {
@@ -23,12 +26,16 @@
             margin-top: 20px;
             position: relative; /* Asegurar que esté por encima de los corazones */
             z-index: 3; /* Valor alto para estar por encima */
+            font-size: 3em; /* Aumentar un poco el tamaño de la fuente */
         }
         p {
             color: white; /* Color del texto en blanco */
-            font-size: 1.2em;
+            font-size: 1.5em; /* Tamaño más grande para mayor legibilidad */
+            text-align: justify; /* Justificar el texto */
             position: relative; /* Asegurar que esté por encima de los corazones */
             z-index: 3; /* Valor alto para estar por encima */
+            max-width: 800px; /* Limitar el ancho del texto */
+            line-height: 1.6; /* Espacio entre líneas */
         }
         img {
             width: 50%; /* Reducir el tamaño de la imagen al 50% */
@@ -98,7 +105,11 @@
 <body>
     <!-- Texto -->
     <h1>Feliz San Valentín, Mi Blanquita ❤️</h1>
-    <p>Eres lo mejor que me ha pasado. Gracias por llenar mi vida de amor y felicidad. 💖</p>
+    <p>Hola niña del alimentador, espero que hayas pasado un grandioso día y que todo te haya ido súper. Sé que es tarde, pero hace rato que no programaba y ando un poco lento. Quizá las fechas especiales no han sido como esperaba últimamente, sin embargo no quiero que eso te haga olvidar lo importante que eres para mí. Te llevo en mi mente y en mi corazón todos los días. Aún sigues siendo mi motivación para no rendirme y, por supuesto, la mujer que quiero a mi lado: orgullosa, odiosa, brava a ratos, pero, sin duda, increíble y maravillosa. Te admiro muchísimo y siempre voy a creer en ti, en tu fuerza y en esas ganas imparables que tienes de lograr todo lo que te propones y comerte el mundo. I love you, mi blanquita.</p>
+
+    <p>Con amor, Angel.</p>
+
+    <p>PD: Te debo el detallito, pero no lo pude tener para hoy :/</p>
 
     <!-- Imagen centrada -->
     <img src="GatitoLove.jpeg" alt="Imagen romántica">
@@ -108,7 +119,6 @@
         <source src="Eres Tu- Matisse.mp3" type="audio/mpeg">
         Tu navegador no soporta audio.
     </audio>
-
 
     <!-- Script para generar corazones flotantes y manejar la interacción -->
     <script>
